@@ -7,15 +7,21 @@
 ```python
 # 문제1
 n, m = 5, 9
-for i in range(n):
-    print('*' * m)
+for height in range(m):
+    for width in range(n):
+        print('*', end='')
+    print('')
 '''
 출력
-*********
-*********
-*********
-*********
-*********
+*****
+*****
+*****
+*****
+*****
+*****
+*****
+*****
+*****
 '''
 ```
 
@@ -26,9 +32,10 @@ for i in range(n):
 ```python
 # 문제2
 student = {'python': 80, 'algorithm': 99, 'django': 89, 'flask': 83}
-total_score = 0
-for score in student.values():
-    total_score += score			# value 를 이용해 총합을 구합니다.
+#total_score = 0
+#for score in student.values():
+#    total_score += score			# value 를 이용해 총합을 구합니다.
+total_score = sum(student.values())
 avg_score = total_score / len(student) # 딕셔너리의 길이로 나눕니다.
 print(avg_score)
 '''
