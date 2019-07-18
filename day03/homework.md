@@ -70,6 +70,20 @@ SyntaxError: positional argument follows keyword argument
 '''
 ```
 
+4. 질문사항
+
+   name 인자에 여러개의 value가 들어가 TypeError 가 발생합니다.
+
+```python
+ssafy('구미', name='허준')
+'''
+    ssafy('구미', name='허준')
+TypeError: ssafy() got multiple values for argument 'name'
+'''
+```
+
+
+
 ## 3 번 문제
 
 ### 다음과 같이 코드가 작성되어 있을 때, 변수 result에 저장된 값을 작성하시오.
