@@ -5,6 +5,9 @@
 ### 양의 정수 x를 입력 받아 제곱근의 근사값을 반환하는 함수를 작성하세요. sqrt() 사용 금지
 
 ```python
+'''
+이분법을 시행할 횟수를 입력 받아 근사값을 구하는 함수
+'''
 def approx_sqrt(number, times):
     max_num = number  # 입력받은 숫자를 최대값
     min_num = number - 1  # 입력받은 숫자 - 1 을 최소값에 넣습니다.
@@ -32,5 +35,71 @@ print(f'sqrt({num})의 근사값은 {result}입니다.')
 
 sqrt(2)의 근사값은 1.414306640625입니다.
 '''
+```
+
+```python
+'''
+최대값과 최소값의 차이가 10^-6 일때의 근사값을 구하는 함수
+'''
+def approx_sqrt(number):
+    max_num = number  # 입력받은 숫자를 최대값
+    min_num = number - 1  # 입력받은 숫자 - 1 을 최소값에 넣습니다.
+    while(True): 
+        
+        if max_num - min_num < 1e-6: # 1e-6 보다 작아지면 반복문을 벗어난다.
+            break
+        else:
+            if ((max_num + min_num) / 2) ** 2 > number: # 위 함수와 같은 로직
+                max_num = ((max_num + min_num) / 2)     
+            else:
+                min_num = ((max_num + min_num) / 2)     
+
+    print(f'''
+    {min_num} < sqrt({number}) < {max_num}
+    ''')
+    return (max_num + min_num) / 2 # 최대값과 최소값의 절반을 근사값으로 반환
+num = int(input('양의 정수를 입력하세요: '))
+
+result = approx_sqrt(num)
+print(f'sqrt({num})의 근사값은 {result}입니다.')
+
+'''
+출력
+양의 정수를 입력하세요: 2
+
+    1.4142131805419922 < sqrt(2) < 1.4142141342163086
+
+sqrt(2)의 근사값은 1.4142136573791504입니다.
+'''
+```
+
+```python
+def approx_sqrt(number):
+    max_num = number  # 입력받은 숫자를 최대값
+    min_num = number - 1  # 입력받은 숫자 - 1 을 최소값에 넣습니다.
+    while(True): # 입력받은 반복 횟수 만큼 이분법을 시행 합니다.
+        
+        if max_num - min_num < 1e-6:
+            break
+        else:
+            max_num, min_num = bisection(max_num, min_num, number)
+
+    print(f'''
+    {min_num} < sqrt({number}) < {max_num}
+    ''')
+    return (max_num + min_num) / 2 # 최대값과 최소값의 절반을 근사값으로 반환
+def bisection(maxnum, minnum, targetnum): # 이분법 함수
+    if ((maxnum + minnum) / 2) ** 2 > targetnum:
+        maxnum = ((maxnum + minnum) / 2)
+    else:
+        minnum = ((maxnum + minnum) / 2)
+    
+    return maxnum, minnum
+
+num = int(input('양의 정수를 입력하세요: '))
+
+result = approx_sqrt(num)
+print(f'sqrt({num})의 근사값은 {result}입니다.')
+
 ```
 
