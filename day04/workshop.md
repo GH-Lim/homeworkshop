@@ -44,15 +44,12 @@ sqrt(2)의 근사값은 1.414306640625입니다.
 def approx_sqrt(number):
     max_num = number  # 입력받은 숫자를 최대값
     min_num = number - 1  # 입력받은 숫자 - 1 을 최소값에 넣습니다.
-    while(True): 
+    while(max_num - min_num > 1e-6): 
         
-        if max_num - min_num < 1e-6: # 1e-6 보다 작아지면 반복문을 벗어난다.
-            break
+        if ((max_num + min_num) / 2) ** 2 > number: # 위 함수와 같은 로직
+            max_num = ((max_num + min_num) / 2)     
         else:
-            if ((max_num + min_num) / 2) ** 2 > number: # 위 함수와 같은 로직
-                max_num = ((max_num + min_num) / 2)     
-            else:
-                min_num = ((max_num + min_num) / 2)     
+            min_num = ((max_num + min_num) / 2)
 
     print(f'''
     {min_num} < sqrt({number}) < {max_num}
@@ -77,12 +74,8 @@ sqrt(2)의 근사값은 1.4142136573791504입니다.
 def approx_sqrt(number):
     max_num = number  # 입력받은 숫자를 최대값
     min_num = number - 1  # 입력받은 숫자 - 1 을 최소값에 넣습니다.
-    while(True): # 입력받은 반복 횟수 만큼 이분법을 시행 합니다.
-        
-        if max_num - min_num < 1e-6:
-            break
-        else:
-            max_num, min_num = bisection(max_num, min_num, number)
+    while(max_num - min_num > 1e-6): 
+        max_num, min_num = bisection(max_num, min_num, number)
 
     print(f'''
     {min_num} < sqrt({number}) < {max_num}
@@ -101,5 +94,22 @@ num = int(input('양의 정수를 입력하세요: '))
 result = approx_sqrt(num)
 print(f'sqrt({num})의 근사값은 {result}입니다.')
 
+```
+
+```python
+# Lecturer's Solution
+import math
+
+def my_sqrt(n):
+    x, y = 1, n
+    result = 1 # 우리가 추측하는 제곱근 result
+    while abs(result ** 2 - n) > 0.0000001:
+        result = (x + y) / 2
+        if result ** 2 < n:
+            x = result
+        else:
+            y = result
+print('math.sqrt : \t', math.sqrt(2))
+print('my_sqrt : \t', my_sqrt(2))
 ```
 

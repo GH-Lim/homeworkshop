@@ -41,7 +41,7 @@ greeting('홍길동')
 
 ### 다음 중 옳지 않은 것을 고르시오.
 
-1. 함수는 오직 하나의 객체만 반환할 수 있어서, ‘return a, b’처럼 쓸 수 없다.
+1. 함수는 오직 하나의 객체만 반환할 수 있어서, ‘return a, b’처럼 쓸 수 없다. ===> (X) 쓸 수 있다.
 
    ```python
    def test():
@@ -78,11 +78,11 @@ greeting('홍길동')
 3. 함수의 인자(parameter)는 함수를 선언할 때 설정한 값이며, 인수(argument)는 함수를 호출할 때 넘겨주는 값이다.
 
    ```python
-   def my_func(*args, second_arg='2nd'): # parameters
+   def my_func(*args, second_arg='2nd'): # parameters 매개변수
        print(args)
        print(type(args))
        print(second_arg)
-   my_func(123, 444, 2, 12, 45, second_arg='1st') # arguments
+   my_func(123, 444, 2, 12, 45, second_arg='1st') # arguments 전달인자
    ```
 
    
@@ -138,3 +138,5 @@ fib_loop(10)
 #### 단점
 
 1. 스택을 소비하여 함수 호출 횟수가 많아지면 루프를 사용한 함수보다 속도가 현저히 느려집니다.
+2. 베이스 케이스, 리턴값 계산 등이 어렵다.
+3. 메모리를 많이 사용한다. (파이썬은 1000번 째 재귀를 받으면 오류 발생)
